@@ -6,32 +6,30 @@ export default function App() {
     return time.toString().padStart(2, '0')
   }
   
-  const [timeleft , setTimeleft] = useState(25 * 60)
-  const [header, setHeader] = useState('Stop Watch')
+  const [timeleft , setTimeleft] = useState(0)
+  const [header, setHeader] = useState(' Let the count down begin !!!')
   const minute = padTime(Math.floor((timeleft / 60)))
   const seconds = padTime(timeleft -( minute * 60))
   const intervalRef = useRef(null)
    
    const  startTime = () => {
      intervalRef.current =  setInterval(() => {
-       setHeader(' Let the count down begin !!!')
+       setHeader('Counting !!!')
   
-     setTimeleft( time => {
-       if(time > 0) return  time -1
-       return 0;
-     }
-      
+     setTimeleft( time => time + 1
       )}, 1000)
   }
   const endTimer = () =>{
     clearInterval(intervalRef.current)
+    setHeader('Paused :(')
   }
   const resetTimer = () =>{
-    setTimeleft(25 * 60)
+    setTimeleft(0)
+    setHeader('Start Again!')
   }
   return (
     <div className="app">
-      <h2>Pomodoro!</h2>
+      <h2>{header}</h2>
 
       <div className="timer">
         <span>{minute}</span>
