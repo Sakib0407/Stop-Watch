@@ -25,6 +25,7 @@ export default function App() {
   }
   const resetTimer = () =>{
     setTimeleft(0)
+    endTimer()
     setHeader('Start Again!')
   }
   return (
